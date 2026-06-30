@@ -137,28 +137,55 @@ function switchCategory(category) {
     }
   });
 }
-
-// 5. Contact Form Handler (Mock Submission)
+// 5. Contact Form Handler (Web3Forms Asynchronous Submit)
 function handleFormSubmit(event) {
   event.preventDefault();
   
-  // Get values
-  const name = document.getElementById('form-name').value;
-  const email = document.getElementById('form-email').value;
-  const phone = document.getElementById('form-phone').value;
-  const msg = document.getElementById('form-msg').value;
+  const form = document.getElementById('contact-form');
+  const btn = form.querySelector('.form-btn');
+  const originalBtnText = btn.textContent;
+  
+  // Show loading state
+  btn.textContent = "Sending...";
+  btn.disabled = true;
 
-  console.log('Form Submitted:', { name, email, phone, msg });
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
 
-  // Show Toast Success Notification
-  const toast = document.getElementById('success-toast');
-  toast.classList.add('show');
+  fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      },
+      body: json
+  })
+  .then(async (response) => {
+      let result = await response.json();
+      if (response.status == 200) {
+          // Success! Show Toast Success Notification
+          const toast = document.getElementById('success-toast');
+          toast.classList.add('show');
+          
+          // Reset form inputs
+          form.reset();
 
-  // Reset form inputs
-  document.getElementById('contact-form').reset();
-
-  // Hide toast after 4 seconds
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 4000);
+          // Hide toast after 4 seconds
+          setTimeout(() => {
+              toast.classList.remove('show');
+          }, 4000);
+      } else {
+          console.error(result);
+          alert("Something went wrong. Please try again or email us directly at customercare@fbd-cleaning.com");
+      }
+  })
+  .catch(error => {
+      console.error(error);
+      alert("Network error. Please check your connection or email us directly at customercare@fbd-cleaning.com");
+  })
+  .finally(() => {
+      btn.textContent = originalBtnText;
+      btn.disabled = false;
+  });
 }
