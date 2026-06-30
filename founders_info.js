@@ -17,14 +17,14 @@ const FOUNDERS_CONTACT = {
   
   // Rahul Bhardwaj's Details
   rahul: {
-    instagram: "https://instagram.com/fbd.cleaning", // e.g. "https://instagram.com/yourusername"
+    instagram: "https://www.instagram.com/dankbhardwajrahul/", // e.g. "https://instagram.com/yourusername"
     linkedin: "https://www.linkedin.com/in/rahul-bhardwaj-op/",                                   // e.g. "https://linkedin.com/in/yourprofile"
     email: "rahul.bhardwaj@fbd-cleaning.com"           // e.g. "rahul@fbd-cleaning.com"
   },
 
   // Sparsh Chhabra's Details
   sparsh: {
-    instagram: "https://www.instagram.com/dankbhardwajrahul/", // e.g. "https://instagram.com/yourusername"
+    instagram: "https://www.instagram.com/sparsh.chhabra_/", // e.g. "https://instagram.com/yourusername"
     linkedin: "https://www.linkedin.com/in/sparsh-chhabra-189547137/",                                   // e.g. "https://linkedin.com/in/yourprofile"
     email: "sparsh.chhabra@fbd-cleaning.com"           // e.g. "sparsh@fbd-cleaning.com"
   }
